@@ -41,3 +41,13 @@ def hedef_menusu(hedefler: list[str]) -> str:
         satirlar.append(f"[{i}] {hedef}")
         
     return "\n".join(satirlar)
+
+
+
+def yakit_ekle(miktar: int, depo: list = None) -> list:
+    """Belirtilen miktardaki yakıtı depoya ekler."""
+    if depo is None:
+        depo = []
+    
+    depo.append(miktar)
+    return depo
