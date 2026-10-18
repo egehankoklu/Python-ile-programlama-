@@ -1,3 +1,4 @@
+from uzay_oyunu.akis import yakit_gostergesi
 from uzay_oyunu.araclar import hamle_sayaci
 
 def envanter_metni(credits: bool, engines: bool, copilot: bool) -> str:
@@ -55,12 +56,26 @@ def yakit_ekle(miktar: int, depo: list = None) -> list:
     return depo
 
 
-def travel_temsili():
-    """Görev 5 için temsili oyun döngüsü"""
-    sayac_fonksiyonu = hamle_sayaci() 
+def travel():
+    sayac_fonksiyonu = hamle_sayaci()
+    gosterge = yakit_gostergesi(100, 40) 
     
-    sayac_fonksiyonu() 
-    sayac_fonksiyonu() 
-    toplam_hamle = sayac_fonksiyonu() 
-    
+    try:
+        kalan = next(gosterge)
+        sayac_fonksiyonu()
+        
+        kalan = next(gosterge)
+        sayac_fonksiyonu()
+        
+        kalan = next(gosterge)
+        sayac_fonksiyonu()
+        
+        kalan = next(gosterge)
+        sayac_fonksiyonu()
+        
+    except StopIteration:
+        print("Yakıtın bitti, uzayda sürükleniyorsun...")
+        return
+        
+    toplam_hamle = sayac_fonksiyonu()
     print(f"Oyunu {toplam_hamle} hamlede bitirdin!")

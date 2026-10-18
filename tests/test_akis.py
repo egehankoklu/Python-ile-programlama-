@@ -1,5 +1,6 @@
+import pytest
 import itertools
-from uzay_oyunu.akis import fibonacci
+from uzay_oyunu.akis import fibonacci, yakit_gostergesi
 
 def test_fibonacci_next():
     g = fibonacci()
@@ -22,3 +23,19 @@ def test_fibonacci_tek_kullanimlik():
     assert ilk_cagri == [0, 1, 1]
     assert ikinci_cagri == [2, 3, 5]
     assert ilk_cagri != ikinci_cagri
+
+
+
+    import pytest
+
+def test_yakit_gostergesi_liste():
+    sonuc = list(yakit_gostergesi(100, 30))
+    assert sonuc == [70, 40, 10, 0]
+
+def test_yakit_gostergesi_stopiteration():
+    gosterge = yakit_gostergesi(20, 15)
+    assert next(gosterge) == 5
+    assert next(gosterge) == 0
+    
+    with pytest.raises(StopIteration):
+        next(gosterge)
