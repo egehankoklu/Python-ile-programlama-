@@ -1,6 +1,7 @@
 import pytest
 import itertools
 from uzay_oyunu.akis import fibonacci, yakit_gostergesi
+from uzay_oyunu.akis import fibonacci, yakit_gostergesi, satirlari_oku, ayristir, uzun_yolculuklar
 
 def test_fibonacci_next():
     g = fibonacci()
@@ -39,3 +40,12 @@ def test_yakit_gostergesi_stopiteration():
     
     with pytest.raises(StopIteration):
         next(gosterge)
+
+def test_boru_hatti_toplam_yakit():
+    sonuc = sum(y for _, _, y in ayristir(satirlari_oku("veri/seyir.txt")))
+    assert sonuc == 88
+
+def test_boru_hatti_uzun_yolculuklar():
+    kayitlar = ayristir(satirlari_oku("veri/seyir.txt"))
+    sonuc = [h for _, h, _ in uzun_yolculuklar(kayitlar, 10)]
+    assert sonuc == ['sirius', 'centauri', 'orion', 'kara_delik']
