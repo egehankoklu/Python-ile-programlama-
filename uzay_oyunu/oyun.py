@@ -1,3 +1,5 @@
+from uzay_oyunu.araclar import hamle_sayaci
+
 def envanter_metni(credits: bool, engines: bool, copilot: bool) -> str:
     """
     Oyuncunun envanter durumunu kontrol ederek sahip olduğu eşyaların metnini oluşturur.
@@ -51,3 +53,14 @@ def yakit_ekle(miktar: int, depo: list = None) -> list:
     
     depo.append(miktar)
     return depo
+
+
+def travel_temsili():
+    """Görev 5 için temsili oyun döngüsü"""
+    sayac_fonksiyonu = hamle_sayaci() 
+    
+    sayac_fonksiyonu() 
+    sayac_fonksiyonu() 
+    toplam_hamle = sayac_fonksiyonu() 
+    
+    print(f"Oyunu {toplam_hamle} hamlede bitirdin!")
