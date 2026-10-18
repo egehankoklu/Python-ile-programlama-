@@ -1,7 +1,7 @@
 import pytest
 import itertools
 from uzay_oyunu.akis import fibonacci, yakit_gostergesi
-from uzay_oyunu.akis import fibonacci, yakit_gostergesi, satirlari_oku, ayristir, uzun_yolculuklar
+from uzay_oyunu.akis import fibonacci, yakit_gostergesi, satirlari_oku, ayristir, uzun_yolculuklar, rota_sayaci
 
 def test_fibonacci_next():
     g = fibonacci()
@@ -49,3 +49,16 @@ def test_boru_hatti_uzun_yolculuklar():
     kayitlar = ayristir(satirlari_oku("veri/seyir.txt"))
     sonuc = [h for _, h, _ in uzun_yolculuklar(kayitlar, 10)]
     assert sonuc == ['sirius', 'centauri', 'orion', 'kara_delik']
+
+
+  def test_rota_sayaci():
+    baglantilar = {
+        "a": ["b", "c"],
+        "b": ["a"],
+        "c": ["a", "b"]
+    }
+    say = rota_sayaci(baglantilar)
+    
+    assert say("a", 0) == 1
+    assert say("a", 1) == 2
+    assert say("a", 2) == 3  
