@@ -1,3 +1,4 @@
+from uzay_oyunu.dekoratorler import log_cagri
 from uzay_oyunu.akis import yakit_gostergesi
 from uzay_oyunu.araclar import hamle_sayaci
 
@@ -27,7 +28,7 @@ def envanter_metni(credits: bool, engines: bool, copilot: bool) -> str:
         
     return "Sende: " + ", ".join(esyalar)
 
-
+@log_cagri
 def hedef_menusu(hedefler: list[str]) -> str:
     """
     Kullanıcıya sunulacak gidilebilir hedeflerin numaralandırılmış menüsünü oluşturur.
@@ -79,3 +80,8 @@ def travel():
         
     toplam_hamle = sayac_fonksiyonu()
     print(f"Oyunu {toplam_hamle} hamlede bitirdin!")
+
+
+@log_cagri
+def galaksi_kur(dosya_yolu: str) -> dict:
+    return {}  

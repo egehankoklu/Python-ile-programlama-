@@ -51,7 +51,7 @@ def test_boru_hatti_uzun_yolculuklar():
     assert sonuc == ['sirius', 'centauri', 'orion', 'kara_delik']
 
 
-  def test_rota_sayaci():
+def test_rota_sayaci():
     baglantilar = {
         "a": ["b", "c"],
         "b": ["a"],

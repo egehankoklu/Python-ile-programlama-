@@ -1,3 +1,5 @@
+
+
 def gorev_kaydi(baslik: str, *adimlar: str, oncelik: str = "normal", **ekler: str) -> None:
     """Görev detaylarını, adımları ve ek bilgileri formatlı şekilde ekrana yazdırır."""
     print(f"[{oncelik.upper()}] {baslik}")
