@@ -1,3 +1,5 @@
+from uzay_oyunu.dekoratorler import sure_olc, say, sinirla, hafiza
+from functools import lru_cache
 from uzay_oyunu.dekoratorler import sure_olc, say
 
 @sure_olc
@@ -45,3 +47,22 @@ def test_sinirla_aralik_disi():
     
     with pytest.raises(ValueError):
         yakit_harca(-10)    
+
+
+from functools import lru_cache
+
+def test_hafiza_lru_karsilastirmasi():
+    @lru_cache(maxsize=3)
+    def fib_lru(n: int) -> int:
+        if n < 2:
+            return n
+        return fib_lru(n-1) + fib_lru(n-2)
+        
+    @hafiza(maxsize=3)
+    def fib_hafiza(n: int) -> int:
+        if n < 2:
+            return n
+        return fib_hafiza(n-1) + fib_hafiza(n-2)
+        
+    assert fib_hafiza(10) == fib_lru(10)
+    assert fib_hafiza(20) == fib_lru(20)     

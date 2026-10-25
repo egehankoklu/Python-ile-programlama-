@@ -59,3 +59,27 @@ def sinirla(alt: int, ust: int) -> Callable:
             return fonksiyon(*args, **kwargs)
         return sarmalayici
     return dekorator
+
+
+def hafiza(maxsize: int = None) -> Callable:
+    """lru_cache mantığını closure ve sözlük ile taklit eden dekoratör."""
+    def dekorator(fonksiyon: Callable) -> Callable:
+        onbellek = {}
+        
+        @wraps(fonksiyon)
+        def sarmalayici(*args: Any, **kwargs: Any) -> Any:
+            anahtar = (args, frozenset(kwargs.items()))
+            
+            if anahtar in onbellek:
+                return onbellek[anahtar]
+                
+            sonuc = fonksiyon(*args, **kwargs)
+            onbellek[anahtar] = sonuc
+            
+            if maxsize is not None and len(onbellek) > maxsize:
+                eski_anahtar = next(iter(onbellek))
+                del onbellek[eski_anahtar]
+                
+            return sonuc
+        return sarmalayici
+    return dekorator
