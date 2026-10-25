@@ -27,4 +27,21 @@ def test_say_dekoratoru():
     deneme_fonksiyonu()
     deneme_fonksiyonu()
     deneme_fonksiyonu()
-    assert deneme_fonksiyonu.cagri == 3   
+    assert deneme_fonksiyonu.cagri == 3 
+
+
+import pytest
+from uzay_oyunu.oyun import yakit_harca
+
+def test_sinirla_sinir_degerleri():
+    assert yakit_harca(0) == 100
+    assert yakit_harca(100) == 0
+    assert yakit_harca(30) == 70
+
+def test_sinirla_aralik_disi():
+    with pytest.raises(ValueError) as hata:
+        yakit_harca(150)
+    assert str(hata.value) == "yakit_harca: 150 değeri 0-100 aralığında değil"
+    
+    with pytest.raises(ValueError):
+        yakit_harca(-10)    

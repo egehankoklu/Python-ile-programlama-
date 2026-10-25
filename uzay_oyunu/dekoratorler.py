@@ -42,3 +42,20 @@ def log_cagri(fonksiyon: Callable) -> Callable:
         return sonuc
         
     return sarmalayici
+
+
+def sinirla(alt: int, ust: int) -> Callable:
+    """İlk argümanın belirtilen aralıkta olup olmadığını kontrol eden dekoratör."""
+    def dekorator(fonksiyon: Callable) -> Callable:
+        @wraps(fonksiyon)
+        def sarmalayici(*args: Any, **kwargs: Any) -> Any:
+            if not args:
+                return fonksiyon(*args, **kwargs)
+                
+            deger = args[0]
+            if not (alt <= deger <= ust):
+                raise ValueError(f"{fonksiyon.__name__}: {deger} değeri {alt}-{ust} aralığında değil")
+                
+            return fonksiyon(*args, **kwargs)
+        return sarmalayici
+    return dekorator

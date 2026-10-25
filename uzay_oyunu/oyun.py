@@ -1,3 +1,4 @@
+from uzay_oyunu.dekoratorler import log_cagri, sinirla
 from uzay_oyunu.komutlar import KOMUTLAR
 from uzay_oyunu.dekoratorler import log_cagri
 from uzay_oyunu.akis import yakit_gostergesi
@@ -85,4 +86,11 @@ def travel():
             print(fonksiyon(durum))
         else:
             print(f"{girdi} gezegenine gidiliyor...")
-            break
+        break
+
+
+@sinirla(0, 100)
+def yakit_harca(miktar: int) -> int:
+    """Belirtilen miktar kadar yakıt harcar ve kalanı döndürür."""
+    baslangic_yakiti = 100
+    return baslangic_yakiti - miktar  
