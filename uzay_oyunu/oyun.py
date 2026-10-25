@@ -1,3 +1,4 @@
+from uzay_oyunu.komutlar import KOMUTLAR
 from uzay_oyunu.dekoratorler import log_cagri
 from uzay_oyunu.akis import yakit_gostergesi
 from uzay_oyunu.araclar import hamle_sayaci
@@ -57,31 +58,31 @@ def yakit_ekle(miktar: int, depo: list = None) -> list:
     return depo
 
 
-def travel():
-    sayac_fonksiyonu = hamle_sayaci()
-    gosterge = yakit_gostergesi(100, 40) 
-    
-    try:
-        kalan = next(gosterge)
-        sayac_fonksiyonu()
-        
-        kalan = next(gosterge)
-        sayac_fonksiyonu()
-        
-        kalan = next(gosterge)
-        sayac_fonksiyonu()
-        
-        kalan = next(gosterge)
-        sayac_fonksiyonu()
-        
-    except StopIteration:
-        print("Yakıtın bitti, uzayda sürükleniyorsun...")
-        return
-        
-    toplam_hamle = sayac_fonksiyonu()
-    print(f"Oyunu {toplam_hamle} hamlede bitirdin!")
-
-
 @log_cagri
 def galaksi_kur(dosya_yolu: str) -> dict:
     return {}  
+
+
+def travel():
+    """Temsili oyun döngüsü ve komut sistemi entegrasyonu."""
+    durum = {
+        "konum": "dünya",
+        "baglantilar": ["orion", "sirius", "kara_delik"],
+        "credits": 50,
+        "engines": 1,
+        "copilot": False
+    }
+    
+    while True:
+        print("\nNereye gitmek istersin?")
+        for i, gezegen in enumerate(durum["baglantilar"], 1):
+            print(f"[{i}] {gezegen}")
+            
+        girdi = input("> ").strip().lower()
+        
+        if girdi in KOMUTLAR:
+            fonksiyon, _ = KOMUTLAR[girdi]
+            print(fonksiyon(durum))
+        else:
+            print(f"{girdi} gezegenine gidiliyor...")
+            break
