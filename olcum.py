@@ -1,3 +1,4 @@
+from uzay_oyunu.dekoratorler import sure_olc
 import time
 from uzay_oyunu.akis import rota_sayaci
 
@@ -17,6 +18,7 @@ say_onbellekli("dünya", 20)
 bitis = time.perf_counter()
 onbellekli_sure = bitis - baslangic
 
+@sure_olc
 def onbelleksiz_say(gezegen: str, adim: int) -> int:
     if adim == 0:
         return 1
