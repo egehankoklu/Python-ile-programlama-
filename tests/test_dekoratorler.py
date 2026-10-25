@@ -1,4 +1,4 @@
-from uzay_oyunu.dekoratorler import sure_olc
+from uzay_oyunu.dekoratorler import sure_olc, say
 
 @sure_olc
 def ornek_fonksiyon(a: int, b: int = 0) -> int:
@@ -14,3 +14,17 @@ def test_sure_olc_adli_arguman():
 def test_sure_olc_isim_belge_korunuyor():
     assert ornek_fonksiyon.__name__ == "ornek_fonksiyon"
     assert ornek_fonksiyon.__doc__ == "Örnek bir toplama fonksiyonu."
+
+
+from uzay_oyunu.dekoratorler import say
+
+@say
+def deneme_fonksiyonu() -> int:
+    """Sayaç testi için boş fonksiyon."""
+    return 1
+
+def test_say_dekoratoru():
+    deneme_fonksiyonu()
+    deneme_fonksiyonu()
+    deneme_fonksiyonu()
+    assert deneme_fonksiyonu.cagri == 3   

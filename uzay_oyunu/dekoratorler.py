@@ -14,3 +14,14 @@ def sure_olc(fonksiyon: Callable) -> Callable:
         return sonuc
         
     return sarmalayici
+
+
+def say(fonksiyon: Callable) -> Callable:
+    """Fonksiyonun kaç kez çağrıldığını bir nitelikte tutan dekoratör."""
+    @wraps(fonksiyon)
+    def sarmalayici(*args: Any, **kwargs: Any) -> Any:
+        sarmalayici.cagri += 1
+        return fonksiyon(*args, **kwargs)
+    
+    sarmalayici.cagri = 0
+    return sarmalayici
